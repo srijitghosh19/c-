@@ -1,0 +1,20 @@
+void sort(int arr[],int n)
+{
+    int a=0,b=n-1,curr=0;
+    while(curr<=b)
+    {
+        if(arr[curr]==0)
+        {
+            swap(arr[a],arr[curr]);
+            curr++;
+            a++;
+        }
+        else if(arr[curr]==2)
+        {
+            swap(arr[b],arr[curr]);
+            b--;
+        }
+        else
+            curr++;
+    }
+}
