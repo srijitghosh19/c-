@@ -1,0 +1,51 @@
+int largest(int n, vector<int> a)
+{
+    int mx = a[0];
+    for(int i = 1; i < n; i++)
+    {
+        if(a[i] > mx)
+            mx = a[i];
+    }
+    return mx;
+}
+
+int smallest(int n, vector<int> a)
+{
+    int mn = a[0];
+    for(int i = 1; i < n; i++)
+    {
+        if(a[i] < mn)
+            mn = a[i];
+    }
+    return mn;
+}
+
+vector<int> getSecondOrderElements(int n, vector<int> a) {
+    int mx = largest(n, a);
+    int mn = smallest(n, a);
+    
+    int res1 = -1; // Second largest
+    int res2 = -1; // Second smallest
+    
+    // Find second largest (greater than the smallest)
+    for(int i = 0; i < n; i++)
+    {
+        if(a[i] != mx) {
+            if(res1 == -1 || a[i] > res1)
+                res1 = a[i];
+        }
+    }
+
+    // Find second smallest (greater than the largest)
+    for(int i = 0; i < n; i++)
+    {
+        if(a[i] != mn) {
+            if(res2 == -1 || a[i] < res2)
+                res2 = a[i];
+        }
+    }
+
+    vector<int> v = {res1, res2};
+    return v;
+}
+
