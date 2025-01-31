@@ -1,0 +1,43 @@
+vector<int> sortedArray(vector<int> a, vector<int> b) {
+    int n = a.size();
+    int m = b.size();
+    vector<int> v;
+    
+    int i = 0, j = 0;
+    while (i < n && j < m) {
+        if (a[i] < b[j]) {
+            v.push_back(a[i]);
+            i++;
+        } else if (a[i] > b[j]) {
+            v.push_back(b[j]);
+            j++;
+        } else { // a[i] == b[j]
+            v.push_back(a[i]); // Only insert once to remove duplicates
+            i++;
+            j++;
+        }
+    }
+
+    // Add remaining elements from a
+    while (i < n) {
+        v.push_back(a[i]);
+        i++;
+    }
+
+    // Add remaining elements from b
+    while (j < m) {
+        v.push_back(b[j]);
+        j++;
+    }
+    int count=1;
+    for(int i=1;i<v.size();i++)
+    {
+        if(v[i]!=v[i-1]){
+            v[count]=v[i];
+            count++;
+        }
+
+    }
+    v.resize(count);
+    return v;
+}
