@@ -1,0 +1,35 @@
+class Solution {
+  public:
+    // Function to delete a node at given position.
+    Node* deleteNode(Node* head, int x) {
+        if(x==1){   
+            if(head==NULL) 
+            {
+                return NULL;
+            }
+            if(head->next==NULL) 
+            {
+                delete head;
+                return NULL;
+            }
+            Node*curr=head;
+            curr->next->prev=NULL;
+            head=head->next;
+            delete curr;
+            return head;
+        }
+        Node *curr=head;
+        if(x>1){
+        for(int i=1;i<x-1;i++)
+        {
+            curr=curr->next;
+        }
+        Node*temp=curr->next;
+            curr->next=temp->next;
+            if(temp->next!=NULL)
+                temp->next->prev=curr;
+            delete(temp);
+        }
+        return head;
+    }
+};
